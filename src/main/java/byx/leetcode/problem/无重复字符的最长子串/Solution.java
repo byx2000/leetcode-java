@@ -8,26 +8,22 @@ import java.util.Set;
  */
 public class Solution {
     public int lengthOfLongestSubstring(String s) {
-        Set<Character> set = new HashSet<>();
         int i = 0, j = 0;
+        Set<Character> set = new HashSet<>();
         int maxLen = 0;
 
-        // [i, j)无重复字符
         while (j < s.length()) {
-            while (j < s.length() && !set.contains(s.charAt(j))) {
+            if (!set.contains(s.charAt(j))) {
                 set.add(s.charAt(j));
                 j++;
-            }
-
-            maxLen = Math.max(maxLen, j - i);
-
-            while (!set.contains(s.charAt(i))) {
+            } else {
+                maxLen = Math.max(maxLen, j - i);
+                set.remove(s.charAt(i));
                 i++;
             }
-
-            set.remove(s.charAt(i));
-            i++;
         }
+
+        maxLen = Math.max(maxLen, j - i);
 
         return maxLen;
     }
