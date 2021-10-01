@@ -5,24 +5,25 @@ package byx.leetcode.problem.长度最小的子数组;
  */
 public class Solution {
     public int minSubArrayLen(int target, int[] nums) {
-        int sum = 0;
         int i = 0, j = 0;
+        int sum = 0;
         int minLen = Integer.MAX_VALUE;
 
         while (j < nums.length) {
-            while (j < nums.length && sum < target) {
+            if (sum < target) {
                 sum += nums[j];
                 j++;
-            }
-            if (sum < target) {
-                break;
-            }
-            while (sum >= target) {
+            } else {
+                minLen = Math.min(minLen, j - i);
                 sum -= nums[i];
                 i++;
             }
+        }
 
-            minLen = Math.min(minLen, j - i + 1);
+        while (sum >= target) {
+            minLen = Math.min(minLen, j - i);
+            sum -= nums[i];
+            i++;
         }
 
         return minLen == Integer.MAX_VALUE ? 0 : minLen;
