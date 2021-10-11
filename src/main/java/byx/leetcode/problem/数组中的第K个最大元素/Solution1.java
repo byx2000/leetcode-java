@@ -5,7 +5,7 @@ import java.util.PriorityQueue;
 /**
  * https://leetcode-cn.com/problems/kth-largest-element-in-an-array/
  */
-public class Solution {
+public class Solution1 {
     public int findKthLargest(int[] nums, int k) {
         PriorityQueue<Integer> pq = new PriorityQueue<>();
         for (int n : nums) {
@@ -18,7 +18,7 @@ public class Solution {
     }
 
     public static void main(String[] args) {
-        Solution solution = new Solution();
+        Solution1 solution = new Solution1();
         System.out.println(solution.findKthLargest(new int[]{3, 2, 1, 5, 6, 4}, 2));
         System.out.println(solution.findKthLargest(new int[]{3, 2, 3, 1, 2, 4, 5, 5, 6}, 4));
     }
