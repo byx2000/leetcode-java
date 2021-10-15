@@ -7,7 +7,7 @@ import java.util.Stack;
 /**
  * https://leetcode-cn.com/problems/kTOapQ/
  */
-public class BSTIterator {
+public class BSTIterator1 {
     private static class Frame {
         TreeNode node;
         int state;
@@ -20,7 +20,7 @@ public class BSTIterator {
 
     private final Stack<Frame> stack = new Stack<>();
 
-    public BSTIterator(TreeNode root) {
+    public BSTIterator1(TreeNode root) {
         stack.push(new Frame(root, 0));
     }
 
