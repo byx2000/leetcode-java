@@ -3,7 +3,7 @@ package byx.leetcode.problem.节点间通路;
 /**
  * https://leetcode-cn.com/problems/route-between-nodes-lcci/
  */
-public class Solution {
+public class Solution1 {
     public boolean findWhetherExistsPath(int n, int[][] graph, int start, int target) {
         boolean[][] adj = new boolean[n][n];
         for (int[] edge : graph) {
@@ -40,7 +40,7 @@ public class Solution {
     }
 
     public static void main(String[] args) {
-        Solution solution = new Solution();
+        Solution1 solution = new Solution1();
         System.out.println(solution.findWhetherExistsPath(3, new int[][]{{0, 1}, {0, 2}, {1, 2}, {1, 2}}, 0, 2));
         System.out.println(solution.findWhetherExistsPath(5, new int[][]{{0, 1}, {0, 2}, {0, 4}, {0, 4}, {0, 1}, {1, 3}, {1, 4}, {1, 3}, {2, 3}, {3, 4}}, 0, 4));
     }
