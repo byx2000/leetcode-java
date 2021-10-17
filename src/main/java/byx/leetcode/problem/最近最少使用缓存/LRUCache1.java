@@ -4,7 +4,10 @@ import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.Map;
 
-public class LRUCache {
+/**
+ * https://leetcode-cn.com/problems/OrIXps/
+ */
+public class LRUCache1 {
     private static class Node {
         int key;
         int value;
@@ -19,7 +22,7 @@ public class LRUCache {
     private final Map<Integer, Node> map = new HashMap<>();
     private final int capacity;
 
-    public LRUCache(int capacity) {
+    public LRUCache1(int capacity) {
         this.capacity = capacity;
     }
 
