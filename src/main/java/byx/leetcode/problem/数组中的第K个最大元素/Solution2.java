@@ -12,13 +12,12 @@ public class Solution2 {
         int left = 0, right = nums.length - 1;
         while (true) {
             int mid = partition(nums, left, right);
-            if (right - mid + 1 == k) {
+            if (mid == nums.length - k) {
                 return nums[mid];
-            } else if (right - mid + 1 < k) {
-                k -= (right - mid + 1);
-                right = mid - 1;
-            } else {
+            } else if (mid < nums.length - k) {
                 left = mid + 1;
+            } else {
+                right = mid - 1;
             }
         }
     }
