@@ -7,30 +7,31 @@ import java.util.Arrays;
  */
 public class Solution {
     public int[] findRedundantConnection(int[][] edges) {
-        int n = edges.length;
-        int[] f = new int[n + 1];
-        for (int i = 1; i <= n; ++i) {
+        int[] f = new int[edges.length + 1];
+        for (int i = 1; i <= edges.length; ++i) {
             f[i] = i;
         }
 
         for (int[] e : edges) {
-            int f1 = find(f, e[0]);
-            int f2 = find(f, e[1]);
-            if (f1 == f2) {
+            if (find(f, e[0]) == find(f, e[1])) {
                 return e;
             } else {
-                f[f2] = f1;
+                merge(f, e[0], e[1]);
             }
         }
 
-        return new int[]{};
+        throw new RuntimeException();
     }
 
-    private int find(int[] f, int i) {
-        if (f[i] == i) {
-            return i;
+    private void merge(int[] f, int m, int n) {
+        f[find(f, m)] = n;
+    }
+
+    private int find(int[] f, int n) {
+        if (f[n] == n) {
+            return n;
         }
-        return f[i] = find(f, f[i]);
+        return f[n] = find(f, f[n]);
     }
 
     public static void main(String[] args) {
