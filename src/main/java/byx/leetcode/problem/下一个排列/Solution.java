@@ -18,7 +18,7 @@ public class Solution {
         }
 
         int j = nums.length - 1;
-        while (j >= i + 1 && nums[j] <= nums[i]) {
+        while (nums[j] <= nums[i]) {
             j--;
         }
 
