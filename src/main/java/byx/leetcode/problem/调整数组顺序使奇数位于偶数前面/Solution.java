@@ -7,18 +7,13 @@ import java.util.Arrays;
  */
 public class Solution {
     public int[] exchange(int[] nums) {
-        int i = 0, j = 0;
-
-        while (j < nums.length) {
-            if (nums[j] % 2 == 0) {
-                j++;
-            } else {
+        int j = 0;
+        for (int i = 0; i < nums.length; ++i) {
+            if (nums[i] % 2 == 1) {
                 swap(nums, i, j);
-                i++;
                 j++;
             }
         }
-
         return nums;
     }
 
