@@ -7,18 +7,17 @@ import java.util.Arrays;
  */
 public class Solution {
     public void sortColors(int[] nums) {
-        int zero = 0, two = nums.length, i = 0;
-
-        while (i < two) {
-            if (nums[i] == 0) {
-                swap(nums, zero, i);
-                zero++;
+        int i = 0, j = nums.length - 1, k = 0;
+        while (k <= j) {
+            if (nums[k] == 0) {
+                swap(nums, i, k);
                 i++;
-            } else if (nums[i] == 1) {
-                i++;
+                k++;
+            } else if (nums[k] == 2) {
+                swap(nums, j, k);
+                j--;
             } else {
-                two--;
-                swap(nums, i, two);
+                k++;
             }
         }
     }
