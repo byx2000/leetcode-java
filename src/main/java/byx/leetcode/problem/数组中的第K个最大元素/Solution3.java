@@ -43,32 +43,18 @@ public class Solution3 {
             int size = nums.size() - 1;
 
             while (index <= size) {
-                int c1 = index * 2, c2 = index * 2 + 1;
-                if (c1 > size && c2 > size) {
+                int c = index * 2;
+                if (c > size) {
                     break;
-                } else if (c2 > size) {
-                    if (nums.get(index) > nums.get(c1)) {
-                        swap(index, c1);
-                        index = c1;
-                    } else {
-                        break;
-                    }
+                }
+                if (c + 1 <= size && nums.get(c) > nums.get(c + 1)) {
+                    c++;
+                }
+                if (nums.get(index) > nums.get(c)) {
+                    swap(index, c);
+                    index = c;
                 } else {
-                    if (nums.get(c1) < nums.get(c2)) {
-                        if (nums.get(index) > nums.get(c1)) {
-                            swap(index, c1);
-                            index = c1;
-                        } else {
-                            break;
-                        }
-                    } else {
-                        if (nums.get(index) > nums.get(c2)) {
-                            swap(index, c2);
-                            index = c2;
-                        } else {
-                            break;
-                        }
-                    }
+                    break;
                 }
             }
 
