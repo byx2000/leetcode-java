@@ -7,36 +7,31 @@ public class Solution {
     private Integer[][] cache;
 
     public int coinChange(int[] coins, int amount) {
-        cache = new Integer[coins.length][amount + 1];
-        return dp(coins, coins.length - 1, amount);
+        cache = new Integer[amount + 1][coins.length];
+        return dp(coins, amount, 0);
     }
 
-    // 使用coins[0]~coins[index]兑换amount的最小硬币数
-    private int dp(int[] coins, int index, int amount) {
-        if (cache[index][amount] != null) {
-            return cache[index][amount];
+    private int dp(int[] coins, int amount, int index) {
+        if (index == coins.length) {
+            return amount == 0 ? 0 : -1;
         }
 
-        if (index == 0) {
-            return cache[index][amount] = (amount % coins[0] != 0) ? -1 : amount / coins[0];
+        if (cache[amount][index] != null) {
+            return cache[amount][index];
         }
 
+        int r1 = dp(coins, amount, index + 1);
         if (amount >= coins[index]) {
-            int c1 = dp(coins, index - 1, amount);
-            int c2 = dp(coins, index, amount - coins[index]);
-            if (c1 == -1) {
-                return cache[index][amount] = (c2 == -1) ? -1 : 1 + c2;
+            int r2 = dp(coins, amount - coins[index], index);
+            if (r1 == -1) {
+                return cache[amount][index] = r2 == -1 ? -1 : 1 + r2;
+            }  else if (r2 == -1) {
+                return cache[amount][index] = r1;
             } else {
-                return cache[index][amount] = (c2 == -1) ? c1 : Math.min(c1, 1 + c2);
+                return cache[amount][index] = Math.min(r1, 1 + r2);
             }
-        } else {
-            return cache[index][amount] = dp(coins, index - 1, amount);
         }
-    }
 
-    public static void main(String[] args) {
-        Solution solution = new Solution();
-        System.out.println(solution.coinChange(new int[]{1, 2, 5}, 11));
-        System.out.println(solution.coinChange(new int[]{429, 171, 485, 26, 381, 31, 290}, 8440));
+        return cache[amount][index] = r1;
     }
 }
