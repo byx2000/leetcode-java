@@ -1,15 +1,18 @@
-package byx.leetcode.problem.求平方根;
+package byx.leetcode.sqrtx;
 
-/**
- * https://leetcode-cn.com/problems/jJ0w9p/
- */
+// https://leetcode.cn/problems/sqrtx/
+
+import org.junit.jupiter.api.Test;
+
+import static org.junit.jupiter.api.Assertions.assertEquals;
+
 public class Solution {
     public int mySqrt(int x) {
         long left = 0, right = x;
         long result = 0;
 
         while (left <= right) {
-            long mid = left + (right - left) / 2;
+            long mid = (left + right) / 2;
             if (mid * mid == x) {
                 return (int) mid;
             } else if (mid * mid < x) {
@@ -23,10 +26,10 @@ public class Solution {
         return (int) result;
     }
 
-    public static void main(String[] args) {
-        Solution solution = new Solution();
-        System.out.println(solution.mySqrt(4));
-        System.out.println(solution.mySqrt(8));
-        System.out.println(solution.mySqrt(2147395599));
+    @Test
+    public void test() {
+        Solution s = new Solution();
+        assertEquals(2, s.mySqrt(4));
+        assertEquals(2, s.mySqrt(8));
     }
 }
